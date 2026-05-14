@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surat Cinta Ulang Tahunmu ✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #2c1810 0%, #3e2723 50%, #4e342e 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Floating particles */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(3px 3px at 20px 30px, #d4a574, transparent),
+                radial-gradient(2px 2px at 80px 80px, rgba(212,165,116,0.8), transparent),
+                radial-gradient(2px 2px at 120px 40px, #d4a574, transparent),
+                radial-gradient(1px 1px at 200px 120px, rgba(212,165,116,0.6), transparent);
+            background-repeat: repeat;
+            background-size: 250px 150px;
+            animation: float 25s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-15px) rotate(0.5deg); }
+            66% { transform: translateY(-5px) rotate(-0.5deg); }
+        }
+
+        .container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 4rem;
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        .header h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            background: linear-gradient(45deg, #d4a574, #f5c77a, #d4a574);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 6px 12px rgba(0,0,0,0.4);
+            line-height: 1.1;
+        }
+
+        .header p {
+            color: #e8d5b7;
+            font-size: 1.3rem;
+            font-weight: 300;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Single Letter - Full Width Hero */
+        .single-letter {
+            background: linear-gradient(145deg, #3e2723, #4e342e);
+            border-radius: 30px;
+            padding: 3.5rem 3rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+            max-width: 700px;
+            width: 100%;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+            border: 3px solid rgba(212, 165, 116, 0.3);
+            animation: fadeInUp 2s ease-out;
+        }
+
+        .single-letter::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212,165,116,0.15), transparent);
+            transition: left 0.7s;
+        }
+
+        .single-letter:hover::before {
+            left: 100%;
+        }
+
+        .single-letter:hover {
+            transform: translateY(-20px) scale(1.03);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+            border-color: rgba(212, 165, 116, 0.5);
+        }
+
+        .letter-icon {
+            font-size: 6rem;
+            background: linear-gradient(45deg, #d4a574, #f5c77a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 2rem;
+            display: block;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .letter-title {
+            color: #e8d5b7;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 400;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .letter-subtitle {
+            color: #b89f7a;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            z-index: 1000;
+            backdrop-filter: blur(15px);
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.7);
+            background: linear-gradient(145deg, #3e2723, #4e342e);
+            padding: 4rem 3rem;
+            border-radius: 35px;
+            max-width: 750px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            text-align: center;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.7);
+            border: 4px solid rgba(212, 165, 116, 0.4);
+            animation: modalSlideIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        @keyframes modalSlideIn {
+            to {
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        .close {
+            position: absolute;
+            top: 25px;
+            right: 30px;
+            color: #e8d5b7;
+            font-size: 2.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .close:hover {
+            color: #d4a574;
+            transform: rotate(90deg);
+        }
+
+        .message-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.2rem;
+            background: linear-gradient(45deg, #d4a574, #f5c77a, #d4a574);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 2rem;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.4);
+        }
+
+        .message-text {
+            color: #e8d5b7;
+            font-size: 1.4rem;
+            line-height: 1.9;
+            font-weight: 300;
+            margin-bottom: 2.5rem;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+        }
+
+        .hearts {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: heartbeat 1.8s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .single-letter {
+                padding: 2.5rem 2rem;
+                margin: 0 1rem;
+            }
+            
+            .header h1 {
+                font-size: 3rem;
+            }
+            
+            .message-text {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Happy Birthday, Sayang 💕</h1>
+            <p>Klik surat ini untuk membaca pesan dan harapan harapan aku untuk kamu...</p>
+        </div>
+
+        <div class="single-letter" onclick="openModal()">
+            <div class="letter-icon">💌</div>
+            <h2 class="letter-title">Wishes</h2>
+            <p class="letter-subtitle">Harapan harapan untuk kamu... <br> <strong>Klik untuk membuka →</strong></p>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="messageModal" class="modal" onclick="closeModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="hearts">💖💕💗</div>
+            <h2 id="messageTitle" class="message-title">My Wishes For You!! </h2>
+            <p id="messageText" class="message-text">
+                Sayangku yang tercinta,<br><br>
+                
+                Di hari ulang tahun ini aku mau ngucapin beberapa doa atau harapan untuk kamu yaaa sayangg <br><br>
+
+                Semoga dengan bertambahnya dewasa kamu di umur yang ke 21 ini kamu bisa jadi pribadi yang lebih baik ya sayang. Jadi diri km yang bahagia dari yang sebelumnya.. Semoga dan ini pasti kamu bisa banggain kedua orang tua kamu ya sayang juga kakak kakak km..  Terus bisa jadi temen yang berguna buat temen temen kamu atau orang iorang sekitar kamu ya sayang..  Kemudian yang terakhir.. semoga DAN HARUS sama sama terus yaa sayangg sama aku, makin sayang teru sama aku.. Sehat dan bahagia selaluu yaa sayangkuuuuu <br><br>
+                
+                Maaf sayang aku ga bisa ngasih yang gimana gimana banget yaa dihari ulang tahun km.. tapi aku harap dengan semua yang aku berikan ke km, km bisa happy dan inget aku terusss yeyyy.. <br><br>
+                
+                Once Again.. Happy Birthdayyyy sayangkuuuu..<br><br>
+                
+                Forever yours,<br>
+                <strong>❤️ ZAKY UR BF ❤️</strong>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            const modal = document.getElementById('messageModal');
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('messageModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
